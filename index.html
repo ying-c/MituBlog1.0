@@ -1,0 +1,922 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>米兔</title>
+    <link rel="icon" type="image/png" href="medias/logo1.png">
+
+    <link rel="stylesheet" type="text/css" href="libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="css/matery.css">
+    <link rel="stylesheet" type="text/css" href="css/my.css">
+    <!-- 图标一样的 -->
+    <link type='text/css' rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" />
+    <link type='text/css' rel="stylesheet" href="css/font-awesome.min.css" />
+
+    <script src="libs/jquery/jquery.min.js"></script>
+    <script>
+        (function () {
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            } else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+    <link rel="stylesheet" href="css/prism-tomorrow.css" type="text/css">
+</head>
+
+
+<body>
+    <script>
+        if (localStorage.getItem('dark') === '1') {
+            document.body.classList.add('dark');
+        }
+        //  else if (new Date().getHours() >= 22 || new Date().getHours() < 7) {
+        // document.body.classList.add('dark');
+        // } 
+        else if (matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark');
+        }
+    </script>
+    <!-- 白天模式和黑夜模式 -->
+    <a onclick="switchNightMode()" id="sma">
+        <i class="fa fa-moon-o" id="nightMode" aria-hidden="true"></i>
+    </a>
+
+    <header class="navbar-fixed">
+        <nav id="headNav" class="bg-color nav-transparent">
+            <div id="navContainer" class="nav-wrapper container">
+                <div class="brand-logo">
+                    <a href="index.html" class="waves-effect waves-light">
+
+                        <img src="medias/logo1.png" class="logo-img" alt="LOGO" style="width: 60px;height: 60px;">
+
+                        <span class="logo-span" style="color: #ffab7c;">米兔储物</span>
+                    </a>
+                </div>
+
+
+                <a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i
+                        class="fas fa-bars"></i></a>
+                <ul class="right nav-menu">
+
+                    <li class="hide-on-med-and-down nav-item">
+
+                        <a href="index.html" class="waves-effect waves-light">
+
+                            <i class="fas fa-home" style="zoom: 0.6;"></i>
+
+                            <span>首页</span>
+                        </a>
+
+                    </li>
+
+                    <li class="hide-on-med-and-down nav-item">
+
+                        <a href="javascript:;" class="waves-effect waves-light">
+
+
+                            <span>链接库</span>
+                            <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+                        </a>
+                        <ul class="sub-nav menus_item_child ">
+
+                            <li>
+                                <a href="#">
+
+                                    <span>友情链接</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="notebook.html">
+
+                                    <span>笔记本</span>
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </li>
+                </ul>
+
+                <!-- 缩小侧边框 -->
+                <div id="mobile-nav" class="side-nav sidenav">
+
+                    <div class="mobile-head bg-color">
+
+                        <img src="medias/logo2.png" class="logo-img circle responsive-img"
+                            style="width: 60px;height: 60px;">
+
+                        <div class="logo-name" style="color: #ffab7c;">米兔储物</div>
+                        <div class="logo-desc">
+
+                            各种链接储物间
+
+                        </div>
+                    </div>
+
+
+
+                    <ul class="menu-list mobile-menu-list">
+                        <li class="m-nav-item">
+                            <a href="index.html" class="waves-effect waves-light">
+                                <i class="fa-fw fas fa-home"></i>
+                                首页
+                            </a>
+
+                        </li>
+                        <li class="m-nav-item">
+                            <a href="javascript:;">
+
+                                <i class="fas fa-fw"></i>
+                                链接库
+                                <span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+                            </a>
+                            <ul>
+
+                                <li>
+
+                                    <a href="#" style="margin-left:75px">
+
+                                        <span>友情链接</span>
+                                    </a>
+                                </li>
+                                <li>
+
+                                    <a href="notebook.html" style="margin-left:75px">
+
+                                        <span>笔记本</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <style>
+        .carousel-control {
+            width: 45px;
+            height: 45px;
+            line-height: 55px;
+            border-radius: 45px;
+            background: transparent;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        #prev-cover {
+            position: absolute;
+            top: 48%;
+            left: 8px;
+        }
+
+        #next-cover {
+            position: absolute;
+            top: 48%;
+            right: 8px;
+            ;
+        }
+
+        #prev-cover i {
+            margin-right: 3px;
+        }
+
+        #next-cover i {
+            margin-left: 3px;
+        }
+
+        .carousel-control:hover {
+            background-color: rgba(0, 0, 0, .4);
+        }
+
+        .carousel-control i {
+            color: #fff;
+            font-size: 2.4rem;
+        }
+    </style>
+
+
+
+    <div class="carousel carousel-slider center index-cover" data-indicators="true" style="margin-top: -64px;">
+
+
+        <div class="carousel-item red white-text bg-cover about-cover">
+            <div class="container">
+                <div class="row">
+                    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+                        <div class="brand">
+                            <div class="title center-align">
+
+
+
+                            </div>
+
+                            <div class="description center-align">
+
+                                <span id="subtitle" style="color: #ffab7c;font-size: 30px;"></span>
+                                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+                                <script>
+                                    var typed = new Typed("#subtitle", {
+                                        strings: ['心里住着小星星', '生活才会亮晶晶'],
+                                        startDelay: 200,
+                                        typeSpeed: 120,
+                                        loop: true,
+                                        backSpeed: 50,
+                                        showCursor: true
+                                    });
+                                </script>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <script>
+                    // 每天切换 banner 图.  Switch banner image every day.
+                    var bannerUrl = "medias/banner/" + new Date().getDay() + '.jpg';
+                    // new Date().getDay()
+                    $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
+                </script>
+
+                <!-- 开始向上 -->
+
+                <div class="cover-btns">
+                    <a href="#indexCard" class="waves-effect waves-light btn"
+                        style="color: #ffab7c;border: 1px solid #ffab7c;">
+                        <i class="fa fa-angle-double-down"></i>开始阅读
+                    </a>
+
+
+                </div>
+                <div class="cover-social-link">
+                    <a href="https://mail.qq.com/" class="tooltipped" target="_blank" data-tooltip="邮箱"
+                        data-position="top" data-delay="50">
+                        <i class="fas fa-envelope-open"></i>
+                    </a>
+
+                    <a href="https://www.qq.com" class="tooltipped" target="_blank" data-tooltip="QQ "
+                        data-position="top" data-delay="50">
+                        <i class="fab fa-qq"></i>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+        $(function () {
+            let coverSlider = $('.carousel');
+
+            //用户触摸轮播自动 restartPlay 是否生效
+            let initUserPressedOrDraggedActive = false
+
+            //用户触摸轮播自动 restartPlay
+            function initUserPressedOrDragged(instance) {
+                setInterval(() => {
+                    if (instance.pressed || instance.dragged) {
+                        // console.log('initUserPressedOrDragged: ',instance.pressed,instance.dragged)
+                        restartPlay()
+                    }
+                }, 1000)
+            }
+
+            coverSlider.carousel({
+                duration: Number('120'),
+                fullWidth: true,
+                indicators: 'true' === 'true',
+                onCycleTo() {
+                    if (!initUserPressedOrDraggedActive) {
+                        // console.log('initUserPressedOrDraggedActive')
+                        initUserPressedOrDragged(this)
+                        initUserPressedOrDraggedActive = true
+                    }
+                },
+            })
+
+            let carouselIntervalId;
+
+            // Loop to call the next cover article picture.
+            let autoCarousel = function () {
+                carouselIntervalId = setInterval(function () {
+                    coverSlider.carousel('next');
+                }, 5000);
+            };
+            autoCarousel();
+
+
+            function restartPlay() {
+
+                clearInterval(carouselIntervalId);
+                autoCarousel();
+
+            };
+
+
+        });
+    </script>
+
+
+
+    <style>
+        #sma {
+            bottom: 172px;
+        }
+
+        .hurens {
+            color: #926fec;
+            font-size: 1.08rem;
+        }
+
+        body.dark .hurens {
+            color: #926fec !important;
+        }
+    </style>
+
+    <main class="content">
+
+        <div id="indexCard" class="index-card">
+            <div class="container ">
+                <div class="card">
+                    <div class="card-content">
+
+                        <div class="dream">
+
+                            <div class="title center-align">
+                                <i class="far fa-lightbulb"></i>&nbsp;&nbsp;
+                                <span style="font-size: 30px;">《文案》</span>
+                            </div>
+
+                            <div class="row">
+                                <div class="col l8 offset-l2 m10 offset-m1 s10 offset-s1 center-align text"
+                                    style="font-size: 20px;">
+                                    生活就是这样，有点忙、有点苦、有点累、有点烦、但也有点喜、有点甜、有点咸，人生百般滋味，生活需要笑着面对。无论你活成什么样子，都有人说三道四，这个世界，我们都只来一次，吃你想吃的饭，见你想见的人，做你喜欢的事。把烦心事丢掉，腾出地方装满鲜花。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="recommend-sections" class="recommend">
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- 全局通知公告播报栏开始 -->
+                <!-- <style>
+                    .notices {
+                        padding: 20px;
+                        color: #969696;
+                        position: relative;
+                        display: inline-block;
+                        border-radius: 10px;
+                        font-size: 16px;
+                    }
+
+                    .rows .col.offset-l2 {
+                        margin-left: 0px !important;
+                    }
+
+                    .textsst {
+                        padding: 20px;
+                        font-size: 1.08rem;
+                        font-family: 'Architects Daughter', cursive !important;
+                    }
+                </style>
+                <div class="card">
+                    <div class="dream">
+                        <div class="row rows">
+                            <div class="notices col l12 offset-l2 m12 offset-m1 s12 offset-s1">
+                                <div class="textsst">
+                                    公告：
+                                    <br>
+                                    #近况 
+                                    <br>
+                                    #方案 
+                                    <br>
+                                    #注意 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- 全局通知公告播报栏结束 -->
+
+            </div>
+        </div>
+
+
+
+
+        <!-- 所有文章卡片 -->
+        <article id="articles" class="container articles">
+            <div class="row article-row">
+
+                <div class="article col s12 m6 l4" data-aos="zoom-in">
+                    <div class="card">
+                        <a href="notebook.html">
+                            <div class="card-image">
+
+                                <img src="medias/banner/tagbg.png" class="responsive-img" alt="">
+
+                                <span class="card-title">网址集合</span>
+                            </div>
+                        </a>
+
+                        <div class="card-content article-content">
+                            <div class="summary block-with-text">
+
+                                前言: 作为一个看视频不想充vip，这里是福利，集合了各类网站贡参考
+
+                                <br />白嫖yyds<br />白嫖yyds
+
+                            </div>
+                            <div class="publish-info">
+                                <span class="publish-date">
+                                    <i class="far fa-clock fa-fw icon-date"></i>2021-12-6
+                                </span>
+                                <span class="publish-author">
+
+                                    <i class="fas fa-bookmark fa-fw icon-category"></i>
+
+                                    <a href="notebook.html" class="post-category">
+                                        各类网址
+                                    </a>
+
+
+                                </span>
+                            </div>
+                        </div>
+
+
+                        <div class="card-action article-tags">
+
+                            <a href="notebook.html">
+                                <span class="chip bg-color">各类网址链接</span>
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="article col s12 m6 l4" data-aos="zoom-in">
+                    <div class="card">
+                        <a href="chrome-dragon-game.html">
+                            <div class="card-image">
+
+                                <img src="img/long.png" class="responsive-img" alt="Chrome小恐龙跑酷游戏加强版">
+
+                                <span class="card-title">Chrome小恐龙跑酷游戏加强版</span>
+                            </div>
+                        </a>
+
+                        <div class="card-content article-content">
+                            <div class="summary block-with-text">
+
+                                前言: 离线状态下chrome浏览器会出现的那个小游戏，然后这个是加强版，可以使用道具。
+
+
+                                操作介绍：
+                                开始游戏：首先点击屏幕
+                                跳跃：注意是“点击屏幕” ！
+                                道具：跳跃后捡到的道具，使用下方对应26字母键盘键
+                                支持手机，电脑，等设备玩耍
+
+                            </div>
+                            <div class="publish-info">
+                                <span class="publish-date">
+                                    <i class="far fa-clock fa-fw icon-date"></i>2021-12-6
+                                </span>
+                                <span class="publish-author">
+
+                                    <i class="fas fa-bookmark fa-fw icon-category"></i>
+
+                                    <a href="chrome-dragon-game.html" class="post-category">
+                                        小游戏
+                                    </a>
+
+
+                                </span>
+                            </div>
+                        </div>
+                        <div class="card-action article-tags">
+
+                            <a href="chrome-dragon-game.html">
+                                <span class="chip bg-color">Chrome小恐龙跑酷游戏</span>
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="article col s12 m6 l4" data-aos="zoom-in">
+                    <div class="card">
+                        <a href="LifeRestart.html">
+                            <div class="card-image">
+
+                                <img src="img/rs.jpg" class="responsive-img" alt="人生重开模拟器">
+
+                                <span class="card-title">人生重开模拟器</span>
+                            </div>
+                        </a>
+
+                        <div class="card-content article-content">
+                            <div class="summary block-with-text">
+
+                                前言: 人生重开模拟器<br />
+
+
+                                操作介绍：
+                                选择3个天赋，开启人生之旅<br />
+                                加载有点慢，耐心等待
+
+                            </div>
+                            <div class="publish-info">
+                                <span class="publish-date">
+                                    <i class="far fa-clock fa-fw icon-date"></i>2021-12-9
+                                </span>
+                                <span class="publish-author">
+
+                                    <i class="fas fa-bookmark fa-fw icon-category"></i>
+
+                                    <a href="LifeRestart.html" class="post-category">
+                                        小游戏
+                                    </a>
+
+
+                                </span>
+                            </div>
+                        </div>
+                        <div class="card-action article-tags">
+
+                            <a href="LifeRestart.html">
+                                <span class="chip bg-color">人生重开模拟器</span>
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="article col s12 m6 l4" data-aos="zoom-in">
+                    <div class="card">
+                        <a href="RandomLover.html">
+                            <div class="card-image">
+
+                                <img src="img/lover.jpg" class="responsive-img" alt="随机情话">
+
+                                <span class="card-title">随机情话</span>
+                            </div>
+                        </a>
+
+                        <div class="card-content article-content">
+                            <div class="summary block-with-text">
+
+                                前言: 随机情话<br />
+
+
+                                你若多来一时<br />
+                                我便多喜欢你一时
+
+                            </div>
+                            <div class="publish-info">
+                                <span class="publish-date">
+                                    <i class="far fa-clock fa-fw icon-date"></i>2021-12-10
+                                </span>
+                                <span class="publish-author">
+
+                                    <i class="fas fa-bookmark fa-fw icon-category"></i>
+
+                                    <a href="RandomLover.html" class="post-category">
+                                        情话
+                                    </a>
+
+
+                                </span>
+                            </div>
+                        </div>
+                        <div class="card-action article-tags">
+
+                            <a href="RandomLover.html">
+                                <span class="chip bg-color">随机情话</span>
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="article col s12 m6 l4" data-aos="zoom-in">
+                    <div class="card">
+                        <a href="fireworks.html">
+                            <div class="card-image">
+
+                                <img src="img/yh.gif" class="responsive-img" alt="烟花">
+
+                                <span class="card-title">烟花</span>
+                            </div>
+                        </a>
+
+                        <div class="card-content article-content">
+                            <div class="summary block-with-text">
+
+                                主题: 烟花<br />
+
+
+                                爱意东升西落<br>
+                                浪漫至死不渝
+
+                            </div>
+                            <div class="publish-info">
+                                <span class="publish-date">
+                                    <i class="far fa-clock fa-fw icon-date"></i>2021-12-10
+                                </span>
+                                <span class="publish-author">
+
+                                    <i class="fas fa-bookmark fa-fw icon-category"></i>
+
+                                    <a href="fireworks.html" class="post-category">
+                                        烟花
+                                    </a>
+
+
+                                </span>
+                            </div>
+                        </div>
+                        <div class="card-action article-tags">
+
+                            <a href="fireworks.html">
+                                <span class="chip bg-color">烟花</span>
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- <div class="article col s12 m6 l4" data-aos="zoom-in">
+                    <div class="card">
+                        <a href="ChristmasTree.html">
+                            <div class="card-image">
+
+                                <img src="img/圣诞树.jpg" class="responsive-img" alt="圣诞树">
+
+                                <span class="card-title">圣诞树</span>
+                            </div>
+                        </a>
+
+                        <div class="card-content article-content">
+                            <div class="summary block-with-text">
+
+                                主题: 圣诞树<br />
+
+
+                                圣诞树(随着音乐变亮)<br />
+                                Merry Christmas
+
+                            </div>
+                            <div class="publish-info">
+                                <span class="publish-date">
+                                    <i class="far fa-clock fa-fw icon-date"></i>2021-12-22
+                                </span>
+                                <span class="publish-author">
+
+                                    <i class="fas fa-bookmark fa-fw icon-category"></i>
+
+                                    <a href="ChristmasTree.html" class="post-category">
+                                        圣诞树
+                                    </a>
+
+
+                                </span>
+                            </div>
+                        </div>
+                        <div class="card-action article-tags">
+
+                            <a href="ChristmasTree.html">
+                                <span class="chip bg-color">圣诞树</span>
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div> -->
+
+            </div>
+        </article>
+
+    </main>
+
+    <!-- 换页数 -->
+    <!-- <div class="container paging">
+        <div class="row">
+            <div class="col s6 m4 l4">
+
+                <a class="left btn-floating btn-large disabled">
+                    <i class="fas fa-angle-left"></i>
+                </a>
+
+            </div>
+            <div class="page-info col m4 l4 hide-on-small-only">
+                <div class="center-align b-text-gray">1 / 6</div>
+            </div>
+            <div class="col s6 m4 l4">
+
+                <a href="page/2/" class="right btn-floating btn-large waves-effect waves-light bg-color">
+                    <i class="fas fa-angle-right"></i>
+                </a>
+
+            </div>
+        </div>
+    </div> -->
+
+
+
+
+    <style>
+        .youpaiyunlogo {
+            height: 26px;
+            display: inline-block;
+            vertical-align: top;
+        }
+    </style>
+    <footer class="page-footer bg-color">
+
+        <!-- 播放器 -->
+        <link rel="stylesheet" href="libs/aplayer/APlayer.min.css">
+        <style>
+            .aplayer .aplayer-lrc p {
+
+                font-size: 12px;
+                font-weight: 700;
+                line-height: 16px !important;
+            }
+
+            .aplayer .aplayer-lrc p.aplayer-lrc-current {
+
+                font-size: 15px;
+                color: #42b983;
+            }
+
+
+            .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+                left: -66px !important;
+            }
+
+            .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+                left: 0px !important;
+            }
+        </style>
+
+        <div class="">
+            <!-- 网易云id：7108420348 -->
+            <div class="row">
+                <meting-js class="hidess col l8 offset-l2 m10 offset-m1 s12" server="netease" type="playlist"
+                    id="7108420348" fixed='true' autoplay='false' theme='#42b983' loop='all' order='list' preload='auto'
+                    volume='0.7' list-folded='true'>
+                </meting-js>
+                <style>
+                    .hidess .aplayer-lrc {
+                        display: none !important;
+                    }
+                </style>
+            </div>
+        </div>
+
+        <script src="libs/aplayer/APlayer.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+
+        <div class="container row center-align" style="margin-bottom: 15px !important;">
+            <!-- 访客地图 -->
+            <div class="col s12 m3 l3 social-link" id="visitmap">
+                <a target="_blank" rel="noopener" href="https://clustrmaps.com/site/1bll6" title="访客地图"><img
+                        src="img/map_v2.png" /></a>
+            </div>
+
+            <!-- 版权信息 -->
+            <div class="col s12 m6 l6 copy-right">
+                Copyright&nbsp;&copy;
+                <span id="year">2021</span>
+                <span>潆勖</span>
+                <br>
+
+                <span id="sitetime"></span>
+                <script>
+                    // 本网站运行时间
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2021";
+                        var startMonth = "12";
+                        var startDate = "4";
+                        var startHour = "0";
+                        var startMinute = "0";
+                        var startSecond = "0";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            document.getElementById("sitetime").innerHTML = "网站已经运行 " +
+                                "<span class='white-color'>" + diffDays + "</span>" + " 天 " +
+                                "<span class= 'white-color'>" + diffHours + "</span>" +
+                                " 小时 " + "<span class='white-color'>" + diffMinutes + "</span>" + " 分钟 " +
+                                "<span class='white-color'>" + diffSeconds + "</span>" + " 秒";
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            document.getElementById("sitetime").innerHTML = "网站已经运行 " +
+                                "<span class= 'white-color'>" + diffYears + "</span>" + " 年 " +
+                                "<span class= 'white-color'>" + diffDays + "</span>" +
+                                " 天 " + "<span class= 'white-color'>" + diffHours + "</span>" + " 小时 " +
+                                "<span class= 'white-color'>" + diffMinutes + "</span>" + " 分钟 " +
+                                "<span class= 'white-color'>" + diffSeconds + "</span>" + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+
+                <br>
+
+            </div>
+            <div class="col s12 m3 l3 social-link social-statis">
+                <a href="https://mail.qq.com/" class="tooltipped" target="_blank" data-tooltip="邮箱" data-position="top"
+                    data-delay="50">
+                    <i class="fas fa-envelope-open"></i>
+                </a>
+
+                <a href="https://www.qq.com" class="tooltipped" target="_blank" data-tooltip="QQ " data-position="top"
+                    data-delay="50">
+                    <i class="fab fa-qq"></i>
+                </a>
+
+
+
+            </div>
+        </div>
+
+    </footer>
+
+
+    <!-- 回到顶部按钮 -->
+    <div id="backTop" class="top-scroll">
+        <a class="btn-floating btn-large waves-effect waves-light" href="javascript(0)">
+            <i class="fas fa-arrow-up"></i>
+        </a>
+    </div>
+
+
+
+
+
+    <script src="libs/materialize/materialize.min.js"></script>
+    <script src="libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="libs/aos/aos.js"></script>
+    <script src="libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="js/matery.js"></script>
+
+</body>
+
+</html>
